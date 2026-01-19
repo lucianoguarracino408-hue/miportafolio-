@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>CITRA Robotics — Autonomous Systems Portfolio</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+
+<style>
+/* ========================
+   DESIGN TOKENS
+======================== */
+:root {
+  --primary: #2563eb;
+  --primary-dark: #1d4ed8;
+  --secondary: #0f172a;
+  --light: #f8fafc;
+  --muted: #64748b;
+  --gray: #94a3b8;
+  --surface: #ffffff;
+  --code-bg: #020617;
+  --radius: 14px;
+  --shadow-sm: 0 4px 12px rgba(0,0,0,.06);
+  --shadow-md: 0 12px 28px rgba(0,0,0,.12);
+}
+
+/* ========================
+   RESET
+======================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ========================
+   BASE
+======================== */
+body {
+  font-family: system-ui, -apple-system, Segoe UI, sans-serif;
+  background: var(--light);
+  color: var(--secondary);
+  line-height: 1.65;
+}
+
+.container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 0 1.5rem;
+}
+
+section {
+  padding: 4rem 0;
+}
+
+h1, h2, h3 {
+  letter-spacing: -0.02em;
+}
+
+.section-title {
+  text-align: center;
+  font-size: 2.1rem;
+  margin-bottom: 3rem;
+  color: var(--primary-dark);
+}
+
+/* ========================
+   NAV
+======================== */
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(255,255,255,.85);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.nav-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 64px;
+}
+
+.nav-inner a {
+  text-decoration: none;
+  color: var(--secondary);
+  font-weight: 600;
+  margin-left: 1.5rem;
+}
+
+/* ========================
+   HERO
+======================== */
+header {
+  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+  color: white;
+  padding: 6rem 1rem;
+  text-align: center;
+}
+
+.hero h1 {
+  font-size: 3rem;
+  font-weight: 800;
+}
+
+.hero p {
+  max-width: 720px;
+  margin: 1.25rem auto 2rem;
+  font-size: 1.15rem;
+  color: #e0e7ff;
+}
+
+.hero-actions a {
+  display: inline-block;
+  margin: 0 .5rem;
+  padding: .75rem 1.75rem;
+  border-radius: 999px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: transform .2s ease;
+}
+
+.btn-primary {
+  background: white;
+  color: var(--primary-dark);
+}
+
+.btn-secondary {
+  border: 2px solid white;
+  color: white;
+}
+
+.hero-actions a:hover {
+  transform: translateY(-2px);
+}
+
+/* ========================
+   GRID & CARDS
+======================== */
+.grid {
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+
+.card {
+  background: var(--surface);
+  border-radius: var(--radius);
+  padding: 1.75rem;
+  box-shadow: var(--shadow-sm);
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-md);
+}
+
+.card h3 {
+  color: var(--primary);
+  margin-bottom: .75rem;
+}
+
+.card p {
+  color: var(--muted);
+}
+
+/* ========================
+   TECH TAGS
+======================== */
+.tech-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .5rem;
+  margin-top: 1rem;
+}
+
+.tech-tag {
+  background: #dbeafe;
+  color: var(--primary-dark);
+  padding: .3rem .8rem;
+  border-radius: 999px;
+  font-size: .8rem;
+  font-weight: 700;
+}
+
+/* ========================
+   CODE BLOCKS
+======================== */
+pre {
+  background: var(--code-bg);
+  color: #e5e7eb;
+  padding: 1rem;
+  border-radius: 10px;
+  margin-top: 1rem;
+  font-size: .85rem;
+  overflow-x: auto;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+/* ========================
+   FOOTER
+======================== */
+footer {
+  background: var(--secondary);
+  color: #cbd5f5;
+  padding: 3rem 1rem;
+  text-align: center;
+}
+
+footer a {
+  color: white;
+  margin: 0 .75rem;
+  font-size: 1.2rem;
+}
+
+/* ========================
+   RESPONSIVE
+======================== */
+@media (max-width: 768px) {
+  .hero h1 {
+    font-size: 2.2rem;
+  }
+}.card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-md);
+}
+.card {
+  will-change: transform;
+}
+
+.card:hover {
+  transform: translateY(-6px) scale(1.01);
+  box-shadow: var(--shadow-md);
+}
+pre code {
+  display: block;
+  white-space: pre;
+}
+
+</style>
+</head>
+
+<body>
+
+<nav>
+  <div class="container nav-inner">
+    <strong>CITRA Robotics</strong>
+    <div>
+      <a href="#overview">Overview</a>
+      <a href="#components">Components</a>
+      <a href="#deployment">Deployment</a>
+    </div>
+  </div>
+</nav>
+
+<header>
+  <div class="container hero">
+    <h1>Autonomous Robotics Platform</h1>
+    <p>
+      Distributed, real-time robotics framework combining C++, Python,
+      streaming telemetry, and persistent data systems.
+    </p>
+    <div class="hero-actions">
+      <a href="#components" class="btn-primary">Explore Architecture</a>
+      <a href="#" class="btn-secondary">View Source</a>
+    </div>
+  </div>
+</header>
+
+<section id="overview">
+  <div class="container">
+    <h2 class="section-title">Project Overview</h2>
+    <div class="card">
+      <h3>Modular & Distributed Design</h3>
+      <p>
+        CITRA is designed as a decoupled robotics stack with deterministic
+        state handling, real-time messaging, and scalable persistence.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section id="components" style="background:#f1f5f9">
+  <div class="container">
+    <h2 class="section-title">Core Components</h2>
+    <div class="grid">
+
+      <div class="card">
+        <h3>Robot Core Engine</h3>
+        <p>Multithreaded C++ core handling physics, commands, and state.</p>
+        <div class="tech-list">
+          <span class="tech-tag">C++17</span>
+          <span class="tech-tag">ZeroMQ</span>
+          <span class="tech-tag">JSON</span>
+        </div>
+        <pre><code>struct RobotState {
+  double x, y, theta;
+  bool moving;
+  int battery;
+};</code></pre>
+      </div>
+
+      <div class="card">
+        <h3>Web API & Telemetry</h3>
+        <p>HTTP + SSE interface for real-time control and monitoring.</p>
+        <div class="tech-list">
+          <span class="tech-tag">REST</span>
+          <span class="tech-tag">SSE</span>
+          <span class="tech-tag">CORS</span>
+        </div>
+        <pre><code>GET /status
+POST /command
+GET /telemetry</code></pre>
+      </div>
+
+      <div class="card">
+        <h3>Persistence Layer</h3>
+        <p>Asynchronous Python workers storing telemetry and events.</p>
+        <div class="tech-list">
+          <span class="tech-tag">PostgreSQL</span>
+          <span class="tech-tag">InfluxDB</span>
+          <span class="tech-tag">asyncio</span>
+        </div>
+        <pre><code>events_table = Table(
+  "events", metadata,
+  Column("payload", JSONB)
+)</code></pre>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="deployment">
+  <div class="container">
+    <h2 class="section-title">Deployment & Tooling</h2>
+    <div class="grid">
+      <div class="card">
+        <h3>Build & Automation</h3>
+        <pre><code>cmake .
+make -j
+./robot_server</code></pre>
+      </div>
+      <div class="card">
+        <h3>Operational Scripts</h3>
+        <pre><code>./start.sh
+python telemetry_worker.py</code></pre>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>© 2026 CITRA Robotics</p>
+  <p>
+   <a href="#" aria-label="GitHub profile"><i class="fab fa-github"></i></a>
+<a href="#" aria-label="LinkedIn profile"><i class="fab fa-linkedin"></i></a>
+ <nav role="navigation" aria-label="Main navigation">
+
+    <a href="#components" class="btn-primary"    
+
+<meta name="description" content="CITRA Robotics is an autonomous robotics platform featuring real-time telemetry, distributed systems, and C++/Python architecture.">
+<meta name="author" content="CITRA Robotics">
+<meta name="keywords" content="robotics, autonomous systems, C++, Python, ZeroMQ, telemetry, distributed systems">
+<meta property="og:title" content="CITRA Robotics — Autonomous Systems Portfolio">
+<meta property="og:description" content="Distributed real-time robotics framework with telemetry, persistence, and modular architecture.">
+<meta property="og:type" content="website">
+<section>
+  <div class="container">
+    <h2 class="section-title">Engineering Highlights</h2>
+    <div class="grid">
+      <div class="card">
+        <h3>Performance</h3>
+        <p>
+          Deterministic command processing with sub-10ms internal latency
+          under simulated load.
+        </p>
+      </div>
+      <div class="card">
+        <h3>Reliability</h3>
+        <p>
+          Stateless API layer with message-queue isolation for fault tolerance.
+        </p>
+      </div>
+      <div class="card">
+        <h3>Scalability</h3>
+        <p>
+          Horizontal expansion via distributed telemetry workers and
+          decoupled persistence.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
