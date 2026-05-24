@@ -1,0 +1,1088 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CELI AI — Portafolio Académico</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ink: #0e0e0e;
+    --ink2: #3a3a3a;
+    --ink3: #767676;
+    --paper: #f7f4ee;
+    --paper2: #ede9e0;
+    --paper3: #e4dfd3;
+    --accent: #1a4a2e;
+    --accent2: #2d7a4f;
+    --accent-light: #d4ead9;
+    --amber: #b85c00;
+    --amber-light: #fdecd6;
+    --blue: #1a3a5c;
+    --blue-light: #dae8f5;
+    --red: #7a1a1a;
+    --red-light: #f5dada;
+    --rule: #ccc8be;
+    --mono: 'DM Mono', monospace;
+    --serif: 'DM Serif Display', serif;
+    --sans: 'Outfit', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--sans);
+    background: var(--paper);
+    color: var(--ink);
+    font-size: 16px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* ── COVER ── */
+  .cover {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cover-left {
+    background: var(--accent);
+    padding: 4rem 3.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+  }
+
+  .cover-left::after {
+    content: '';
+    position: absolute;
+    right: -60px;
+    top: 0;
+    bottom: 0;
+    width: 120px;
+    background: var(--accent);
+    clip-path: polygon(0 0, 50% 0, 100% 50%, 50% 100%, 0 100%);
+    z-index: 2;
+  }
+
+  .cover-right {
+    background: var(--paper);
+    padding: 4rem 3.5rem 4rem 5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .cover-logo {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: rgba(255,255,255,0.5);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+
+  .cover-main-title {
+    font-family: var(--serif);
+    font-size: clamp(52px, 7vw, 88px);
+    color: #fff;
+    line-height: 0.95;
+    margin-top: auto;
+    margin-bottom: 0.3em;
+  }
+
+  .cover-main-title em {
+    font-style: italic;
+    color: #a8d4b5;
+  }
+
+  .cover-tagline {
+    font-size: 14px;
+    color: rgba(255,255,255,0.65);
+    max-width: 280px;
+    line-height: 1.6;
+  }
+
+  .cover-meta {
+    margin-bottom: 1.5rem;
+  }
+
+  .cover-meta-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink3);
+    margin-bottom: 4px;
+  }
+
+  .cover-meta-val {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--ink);
+  }
+
+  .cover-number {
+    font-family: var(--serif);
+    font-size: 200px;
+    color: rgba(255,255,255,0.04);
+    position: absolute;
+    bottom: -20px;
+    left: -10px;
+    line-height: 1;
+    pointer-events: none;
+    user-select: none;
+  }
+
+  .cover-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 2rem;
+  }
+
+  .chip {
+    font-family: var(--mono);
+    font-size: 11px;
+    padding: 4px 10px;
+    border-radius: 4px;
+    background: var(--paper2);
+    color: var(--ink2);
+    border: 1px solid var(--rule);
+  }
+
+  .chip.green { background: var(--accent-light); color: var(--accent); border-color: #9fcfad; }
+  .chip.amber { background: var(--amber-light); color: var(--amber); border-color: #f0c090; }
+  .chip.blue  { background: var(--blue-light);  color: var(--blue);  border-color: #9bbdd4; }
+
+  /* ── NAV ── */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--ink);
+    display: flex;
+    align-items: center;
+    gap: 0;
+    overflow-x: auto;
+  }
+
+  nav a {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.55);
+    text-decoration: none;
+    padding: 14px 20px;
+    white-space: nowrap;
+    border-right: 1px solid rgba(255,255,255,0.08);
+    transition: color 0.15s, background 0.15s;
+  }
+
+  nav a:hover { color: #fff; background: rgba(255,255,255,0.06); }
+
+  nav .nav-brand {
+    font-family: var(--serif);
+    font-size: 16px;
+    color: #fff;
+    padding: 10px 24px;
+    border-right: 1px solid rgba(255,255,255,0.08);
+    letter-spacing: 0;
+    text-transform: none;
+    font-style: italic;
+  }
+
+  /* ── LAYOUT ── */
+  .page { max-width: 900px; margin: 0 auto; padding: 5rem 2rem; }
+
+  .page + .page { border-top: 1px solid var(--rule); }
+
+  .page-num {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--ink3);
+    margin-bottom: 0.5rem;
+  }
+
+  .page-title {
+    font-family: var(--serif);
+    font-size: clamp(36px, 5vw, 52px);
+    line-height: 1.05;
+    margin-bottom: 1rem;
+    color: var(--ink);
+  }
+
+  .page-title em { font-style: italic; color: var(--accent2); }
+
+  .lead {
+    font-size: 18px;
+    color: var(--ink2);
+    max-width: 640px;
+    margin-bottom: 3rem;
+    line-height: 1.75;
+    font-weight: 300;
+  }
+
+  hr.rule { border: none; border-top: 1px solid var(--rule); margin: 3rem 0; }
+
+  /* ── PROBLEMA ── */
+  .problem-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1px;
+    background: var(--rule);
+    border: 1px solid var(--rule);
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 3rem;
+  }
+
+  .problem-cell {
+    background: var(--paper);
+    padding: 1.75rem;
+  }
+
+  .problem-icon {
+    font-size: 28px;
+    margin-bottom: 0.75rem;
+  }
+
+  .problem-title {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 0.4rem;
+    color: var(--ink);
+  }
+
+  .problem-desc {
+    font-size: 13px;
+    color: var(--ink3);
+    line-height: 1.6;
+  }
+
+  /* ── ARQUITECTURA ── */
+  .arch-flow {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    margin-bottom: 3rem;
+  }
+
+  .arch-row {
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    gap: 0;
+    align-items: stretch;
+  }
+
+  .arch-layer-label {
+    background: var(--ink);
+    color: #fff;
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    text-align: center;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+
+  .arch-layer-label.green  { background: var(--accent); }
+  .arch-layer-label.amber  { background: var(--amber); }
+  .arch-layer-label.blue   { background: var(--blue); }
+
+  .arch-layer-content {
+    border: 1px solid var(--rule);
+    border-left: none;
+    padding: 1rem 1.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: center;
+    border-bottom: none;
+  }
+
+  .arch-row:last-child .arch-layer-content { border-bottom: 1px solid var(--rule); }
+  .arch-row:last-child .arch-layer-label { border-bottom: none; }
+
+  .arch-tag {
+    font-family: var(--mono);
+    font-size: 11px;
+    padding: 3px 9px;
+    border-radius: 4px;
+    border: 1px solid var(--rule);
+    background: var(--paper2);
+    color: var(--ink2);
+  }
+
+  .arch-arrow {
+    text-align: center;
+    padding: 8px 0;
+    color: var(--ink3);
+    font-size: 18px;
+    grid-column: 1 / -1;
+  }
+
+  /* ── PIPELINE ── */
+  .pipeline-steps {
+    counter-reset: step;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    margin-bottom: 3rem;
+  }
+
+  .pipeline-step {
+    counter-increment: step;
+    display: grid;
+    grid-template-columns: 56px 1fr;
+    border: 1px solid var(--rule);
+    border-bottom: none;
+  }
+
+  .pipeline-step:first-child { border-radius: 8px 8px 0 0; }
+  .pipeline-step:last-child  { border-bottom: 1px solid var(--rule); border-radius: 0 0 8px 8px; }
+
+  .step-num {
+    background: var(--paper2);
+    font-family: var(--serif);
+    font-size: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--ink3);
+    border-right: 1px solid var(--rule);
+  }
+
+  .step-num::before { content: counter(step); }
+
+  .step-body {
+    padding: 1.25rem 1.5rem;
+    background: var(--paper);
+  }
+
+  .step-name {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 0.3rem;
+    color: var(--ink);
+  }
+
+  .step-name .badge {
+    font-family: var(--mono);
+    font-size: 10px;
+    font-weight: 400;
+    padding: 2px 7px;
+    border-radius: 3px;
+    margin-left: 8px;
+    vertical-align: middle;
+  }
+
+  .badge.green { background: var(--accent-light); color: var(--accent); }
+  .badge.amber { background: var(--amber-light);  color: var(--amber);  }
+  .badge.blue  { background: var(--blue-light);   color: var(--blue);   }
+  .badge.red   { background: var(--red-light);    color: var(--red);    }
+
+  .step-desc {
+    font-size: 13px;
+    color: var(--ink3);
+    line-height: 1.6;
+  }
+
+  /* ── VINI ── */
+  .vini-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 3rem;
+  }
+
+  .vini-card {
+    border: 1px solid var(--rule);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .vini-card-head {
+    background: var(--paper2);
+    padding: 0.9rem 1.25rem;
+    font-size: 13px;
+    font-weight: 600;
+    border-bottom: 1px solid var(--rule);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .vini-card-head .dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .vini-card-body {
+    padding: 1rem 1.25rem;
+    background: var(--paper);
+  }
+
+  .vini-card-body p {
+    font-size: 13px;
+    color: var(--ink2);
+    line-height: 1.6;
+    margin-bottom: 0.75rem;
+  }
+
+  .vini-card-body p:last-child { margin-bottom: 0; }
+
+  .vini-card-body .detail {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--ink3);
+    background: var(--paper2);
+    padding: 2px 7px;
+    border-radius: 3px;
+    display: inline-block;
+    margin-top: 2px;
+  }
+
+  /* ── CONTEXTOS VINI ── */
+  .contexts-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 8px;
+    margin-bottom: 3rem;
+  }
+
+  .ctx-item {
+    background: var(--paper2);
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    padding: 0.75rem;
+    text-align: center;
+  }
+
+  .ctx-icon { font-size: 22px; margin-bottom: 6px; }
+  .ctx-name { font-size: 11px; font-weight: 600; color: var(--ink2); line-height: 1.3; }
+
+  /* ── INFRA ── */
+  .infra-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 3rem;
+    font-size: 14px;
+  }
+
+  .infra-table th {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink3);
+    text-align: left;
+    padding: 0.6rem 1rem;
+    background: var(--paper2);
+    border: 1px solid var(--rule);
+  }
+
+  .infra-table td {
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--rule);
+    background: var(--paper);
+    vertical-align: top;
+  }
+
+  .infra-table td:first-child {
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--ink);
+    white-space: nowrap;
+  }
+
+  .infra-table td:last-child {
+    color: var(--ink3);
+    font-size: 13px;
+  }
+
+  /* ── APRENDIZAJES ── */
+  .learn-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    margin-bottom: 3rem;
+  }
+
+  .learn-item {
+    display: grid;
+    grid-template-columns: 3rem 1fr;
+    border: 1px solid var(--rule);
+    border-bottom: none;
+  }
+
+  .learn-item:first-child { border-radius: 8px 8px 0 0; }
+  .learn-item:last-child  { border-bottom: 1px solid var(--rule); border-radius: 0 0 8px 8px; }
+
+  .learn-marker {
+    background: var(--accent-light);
+    border-right: 1px solid var(--rule);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+  }
+
+  .learn-text {
+    padding: 1rem 1.25rem;
+    background: var(--paper);
+  }
+
+  .learn-text strong {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 0.2rem;
+  }
+
+  .learn-text span {
+    font-size: 13px;
+    color: var(--ink3);
+    line-height: 1.6;
+  }
+
+  /* ── CONCLUSIÓN ── */
+  .conclusion-box {
+    background: var(--accent);
+    border-radius: 12px;
+    padding: 3rem;
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 3rem;
+  }
+
+  .conclusion-box::before {
+    content: 'CELI';
+    font-family: var(--serif);
+    font-size: 160px;
+    position: absolute;
+    right: -20px;
+    bottom: -30px;
+    opacity: 0.06;
+    line-height: 1;
+    pointer-events: none;
+  }
+
+  .conclusion-box h3 {
+    font-family: var(--serif);
+    font-size: 28px;
+    margin-bottom: 1rem;
+    font-weight: 400;
+  }
+
+  .conclusion-box p {
+    font-size: 15px;
+    opacity: 0.8;
+    max-width: 580px;
+    line-height: 1.75;
+    margin-bottom: 1rem;
+  }
+
+  .conclusion-box p:last-child { margin-bottom: 0; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--ink);
+    color: rgba(255,255,255,0.4);
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    padding: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  footer span { color: rgba(255,255,255,0.7); }
+
+  /* ── CODE BLOCK ── */
+  pre {
+    background: var(--ink);
+    color: #a8d4b5;
+    font-family: var(--mono);
+    font-size: 12px;
+    line-height: 1.7;
+    padding: 1.25rem 1.5rem;
+    border-radius: 8px;
+    overflow-x: auto;
+    margin: 1.5rem 0;
+  }
+
+  pre .comment { color: rgba(255,255,255,0.3); }
+  pre .key     { color: #f0c090; }
+  pre .str     { color: #a8d4b5; }
+  pre .num     { color: #dae8f5; }
+
+  /* ── QUOTE ── */
+  blockquote {
+    border-left: 3px solid var(--accent2);
+    padding: 0.75rem 1.5rem;
+    margin: 2rem 0;
+    background: var(--accent-light);
+    border-radius: 0 6px 6px 0;
+    font-size: 15px;
+    color: var(--accent);
+    font-style: italic;
+    line-height: 1.7;
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 720px) {
+    .cover { grid-template-columns: 1fr; }
+    .cover-left::after { display: none; }
+    .cover-right { padding: 3rem 2rem; }
+    .problem-grid { grid-template-columns: 1fr; }
+    .vini-grid { grid-template-columns: 1fr; }
+    .contexts-grid { grid-template-columns: repeat(3, 1fr); }
+    .arch-row { grid-template-columns: 90px 1fr; }
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .cover-main-title,
+  .cover-tagline,
+  .cover-meta { animation: fadeUp 0.6s ease both; }
+  .cover-main-title { animation-delay: 0.1s; }
+  .cover-tagline     { animation-delay: 0.25s; }
+  .cover-meta        { animation-delay: 0.35s; }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════ COVER -->
+<section class="cover">
+  <div class="cover-left">
+    <div class="cover-logo">Portafolio Académico · 2024</div>
+    <div>
+      <div class="cover-main-title">CELI<br><em>AI</em></div>
+      <p class="cover-tagline">Sistema de mejora de imágenes con visión artificial. Del celular al servidor, en tiempo real.</p>
+    </div>
+    <div class="cover-number">01</div>
+  </div>
+
+  <div class="cover-right">
+    <div class="cover-meta">
+      <p class="cover-meta-label">Proyecto</p>
+      <p class="cover-meta-val">CELI AI — Camera Enhancement with Learning Intelligence</p>
+    </div>
+    <div class="cover-meta">
+      <p class="cover-meta-label">Área</p>
+      <p class="cover-meta-val">Visión Artificial · Desarrollo Móvil · Backend</p>
+    </div>
+    <div class="cover-meta">
+      <p class="cover-meta-label">Estado</p>
+      <p class="cover-meta-val">✓ Integrado y funcional en producción</p>
+    </div>
+    <div class="cover-meta">
+      <p class="cover-meta-label">Stack principal</p>
+      <p class="cover-meta-val">Python · FastAPI · OpenCV · Flutter · Docker</p>
+    </div>
+    <div class="cover-chips">
+      <span class="chip green">FastAPI</span>
+      <span class="chip green">OpenCV 4.9</span>
+      <span class="chip green">NumPy</span>
+      <span class="chip blue">Flutter</span>
+      <span class="chip blue">Dart</span>
+      <span class="chip amber">Docker</span>
+      <span class="chip amber">PostgreSQL</span>
+      <span class="chip amber">Redis</span>
+      <span class="chip">Celery</span>
+      <span class="chip">Flask</span>
+      <span class="chip">HMAC</span>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════ NAV -->
+<nav>
+  <span class="nav-brand">CELI AI</span>
+  <a href="#problema">Problema</a>
+  <a href="#arquitectura">Arquitectura</a>
+  <a href="#vini">Vini</a>
+  <a href="#pipeline">Pipeline</a>
+  <a href="#infra">Infraestructura</a>
+  <a href="#aprendizajes">Aprendizajes</a>
+  <a href="#conclusion">Conclusión</a>
+</nav>
+
+<!-- ═══════════════════════════════════ PROBLEMA -->
+<section class="page" id="problema">
+  <p class="page-num">01 — Contexto y problema</p>
+  <h2 class="page-title">¿Qué problema<br><em>resuelve?</em></h2>
+  <p class="lead">Fotografiar páginas de libros, documentos y recibos con el celular produce imágenes inconsistentes. La calidad depende de la luz, el pulso y el ángulo. CELI AI automatiza la mejora.</p>
+
+  <div class="problem-grid">
+    <div class="problem-cell">
+      <div class="problem-icon">💡</div>
+      <p class="problem-title">Iluminación variable</p>
+      <p class="problem-desc">Las fotos tomadas en ambientes con luz artificial o natural desigual presentan zonas sobreexpuestas y subexpuestas en la misma imagen.</p>
+    </div>
+    <div class="problem-cell">
+      <div class="problem-icon">🌀</div>
+      <p class="problem-title">Ruido y desenfoque</p>
+      <p class="problem-desc">El movimiento de la mano y la baja apertura de las cámaras móviles generan imágenes borrosas y con ruido digital, especialmente con poca luz.</p>
+    </div>
+    <div class="problem-cell">
+      <div class="problem-icon">⚙️</div>
+      <p class="problem-title">Parámetros manuales</p>
+      <p class="problem-desc">Las apps existentes obligan al usuario a ajustar manualmente el contraste, brillo y nitidez. No existe un sistema que detecte el contexto y calibre solo.</p>
+    </div>
+  </div>
+
+  <blockquote>
+    La solución no es solo procesar la imagen. Es entenderla primero, y luego aplicar el tratamiento exacto que necesita según lo que muestra.
+  </blockquote>
+
+  <p style="font-size:15px; color:var(--ink2); line-height:1.75;">CELI AI resuelve esto con un sistema de tres capas: una app móvil que captura automáticamente cuando detecta foco, un módulo de inteligencia visual (Vini) que analiza la imagen, y un servidor con motores OpenCV especializados por tipo de contenido.</p>
+</section>
+
+<!-- ═══════════════════════════════════ ARQUITECTURA -->
+<section class="page" id="arquitectura">
+  <p class="page-num">02 — Diseño del sistema</p>
+  <h2 class="page-title">Arquitectura<br><em>general</em></h2>
+  <p class="lead">El sistema está dividido en tres capas independientes que se comunican via HTTP. Cada capa tiene una responsabilidad única y puede evolucionar por separado.</p>
+
+  <div class="arch-flow">
+    <div class="arch-row">
+      <div class="arch-layer-label blue">Capa cliente<br>Flutter</div>
+      <div class="arch-layer-content">
+        <span class="arch-tag">celi_app.dart</span>
+        <span class="arch-tag">book_service.dart</span>
+        <span class="arch-tag">book_service_ui.dart</span>
+        <span class="arch-tag">Isolate YUV420</span>
+        <span class="arch-tag">captura automática</span>
+        <span class="arch-tag">stream progreso</span>
+      </div>
+    </div>
+    <div class="arch-arrow">↕ HTTP multipart + JSON</div>
+    <div class="arch-row">
+      <div class="arch-layer-label green">Capa servidor<br>FastAPI</div>
+      <div class="arch-layer-content">
+        <span class="arch-tag">main.py</span>
+        <span class="arch-tag">app.py (Flask)</span>
+        <span class="arch-tag">engine.py</span>
+        <span class="arch-tag">6 endpoints REST</span>
+        <span class="arch-tag">semáforo concurrencia</span>
+        <span class="arch-tag">caché LRU</span>
+        <span class="arch-tag">HMAC</span>
+      </div>
+    </div>
+    <div class="arch-arrow">↕ llamadas internas</div>
+    <div class="arch-row">
+      <div class="arch-layer-label" style="background:#533ab7">Capa Vini<br>CV inteligente</div>
+      <div class="arch-layer-content">
+        <span class="arch-tag">ContextClassifier</span>
+        <span class="arch-tag">BlurDetector</span>
+        <span class="arch-tag">BrightnessDetector</span>
+        <span class="arch-tag">NoiseDetector</span>
+        <span class="arch-tag">FaceDetector</span>
+        <span class="arch-tag">EngineBridge</span>
+        <span class="arch-tag">ViniEngine</span>
+      </div>
+    </div>
+    <div class="arch-arrow">↕ numpy arrays</div>
+    <div class="arch-row">
+      <div class="arch-layer-label amber">Infraestructura<br>Docker</div>
+      <div class="arch-layer-content">
+        <span class="arch-tag">docker-compose</span>
+        <span class="arch-tag">PostgreSQL 15</span>
+        <span class="arch-tag">Redis</span>
+        <span class="arch-tag">Celery worker</span>
+        <span class="arch-tag">volumen compartido</span>
+        <span class="arch-tag">health checks</span>
+      </div>
+    </div>
+  </div>
+
+  <p style="font-size:14px; color:var(--ink3); line-height:1.7;">El flujo completo de una imagen: la app Flutter mide nitidez en tiempo real → captura automática → BookService sube al servidor → FastAPI invoca Vini para detectar el contexto → se ejecuta el pipeline OpenCV específico → la imagen procesada vuelve al móvil con métricas de mejora.</p>
+</section>
+
+<!-- ═══════════════════════════════════ VINI -->
+<section class="page" id="vini">
+  <p class="page-num">03 — Módulo Vini</p>
+  <h2 class="page-title">Vini: inteligencia<br><em>visual</em></h2>
+  <p class="lead">Visual Intelligence Node — el cerebro del sistema. Analiza cada imagen antes de procesarla y decide automáticamente qué parámetros aplicar. Sin intervención del usuario.</p>
+
+  <div class="vini-grid">
+    <div class="vini-card">
+      <div class="vini-card-head"><span class="dot" style="background:#533ab7"></span>BlurDetector</div>
+      <div class="vini-card-body">
+        <p>Mide el desenfoque usando la <strong>varianza del Laplaciano</strong>. Un Laplaciano detecta bordes; si la varianza es baja, la imagen tiene pocos bordes definidos → está borrosa.</p>
+        <p>Clasifica en 4 niveles y sugiere el factor de sharpening correspondiente.</p>
+        <span class="detail">muy_borrosa → sharpness 1.8</span><br>
+        <span class="detail">nítida → sharpness 1.0</span>
+      </div>
+    </div>
+
+    <div class="vini-card">
+      <div class="vini-card-head"><span class="dot" style="background:#b85c00"></span>BrightnessDetector</div>
+      <div class="vini-card-body">
+        <p>Analiza la <strong>distribución tonal</strong> completa: brillo medio, desviación estándar, ratio de píxeles oscuros y sobreexpuestos.</p>
+        <p>Calcula un <em>exposure score</em> con función gaussiana centrada en 128 (brillo ideal).</p>
+        <span class="detail">score 0 (malo) → 1 (ideal)</span>
+      </div>
+    </div>
+
+    <div class="vini-card">
+      <div class="vini-card-head"><span class="dot" style="background:#1a3a5c"></span>NoiseDetector</div>
+      <div class="vini-card-body">
+        <p>Combina <strong>tres métodos</strong> para mayor precisión: diferencia con Gaussiano (50%), energía del Laplaciano (30%) y varianza local en bloques de 16×16 (20%).</p>
+        <p>El score compuesto determina la fuerza de denoise recomendada.</p>
+        <span class="detail">score 0–100 → denoise 0–0.95</span>
+      </div>
+    </div>
+
+    <div class="vini-card">
+      <div class="vini-card-head"><span class="dot" style="background:#1a4a2e"></span>FaceDetector</div>
+      <div class="vini-card-body">
+        <p>Usa el <strong>clasificador Haar Cascade</strong> de OpenCV, incluido en la librería sin dependencias extra. Detecta caras frontales y mide su área relativa en la imagen.</p>
+        <p>Si la cara más grande ocupa más del 15%, activa modo retrato.</p>
+        <span class="detail">portrait / group / no_faces</span>
+      </div>
+    </div>
+  </div>
+
+  <p class="page-num" style="margin-bottom:1rem">Clasificador de contexto — 10 tipos detectados</p>
+  <div class="contexts-grid">
+    <div class="ctx-item"><div class="ctx-icon">📄</div><p class="ctx-name">book_page</p></div>
+    <div class="ctx-item"><div class="ctx-icon">📋</div><p class="ctx-name">document</p></div>
+    <div class="ctx-item"><div class="ctx-icon">🖼️</div><p class="ctx-name">screenshot</p></div>
+    <div class="ctx-item"><div class="ctx-icon">👤</div><p class="ctx-name">portrait</p></div>
+    <div class="ctx-item"><div class="ctx-icon">👥</div><p class="ctx-name">group_photo</p></div>
+    <div class="ctx-item"><div class="ctx-icon">🌙</div><p class="ctx-name">low_light</p></div>
+    <div class="ctx-item"><div class="ctx-icon">🌃</div><p class="ctx-name">night_scene</p></div>
+    <div class="ctx-item"><div class="ctx-icon">🏔️</div><p class="ctx-name">landscape</p></div>
+    <div class="ctx-item"><div class="ctx-icon">📦</div><p class="ctx-name">product_photo</p></div>
+    <div class="ctx-item"><div class="ctx-icon">🖼️</div><p class="ctx-name">general_photo</p></div>
+  </div>
+
+  <pre><span class="comment"># Ejemplo: Vini analiza una imagen y decide el modo</span>
+vini = ViniEngine()
+config = vini.analyze(image_bytes)
+
+<span class="comment"># Resultado devuelto a CELI para el pipeline:</span>
+{
+  <span class="key">"mode"</span>:         <span class="str">"book"</span>,
+  <span class="key">"denoise"</span>:      <span class="num">0.28</span>,
+  <span class="key">"sharpness"</span>:    <span class="num">0.75</span>,
+  <span class="key">"contrast"</span>:     <span class="num">0.52</span>,
+  <span class="key">"jpeg_quality"</span>: <span class="num">85</span>,
+  <span class="key">"_vini_metrics"</span>: {
+    <span class="key">"brightness"</span>: <span class="num">172.4</span>,
+    <span class="key">"noise"</span>:      <span class="num">6.1</span>,
+    <span class="key">"edges"</span>:      <span class="num">28.3</span>,
+    <span class="key">"saturation"</span>: <span class="num">8.7</span>
+  }
+}</pre>
+</section>
+
+<!-- ═══════════════════════════════════ PIPELINE -->
+<section class="page" id="pipeline">
+  <p class="page-num">04 — Procesamiento OpenCV</p>
+  <h2 class="page-title">Pipeline de<br><em>3 motores</em></h2>
+  <p class="lead">Una vez que Vini determina el contexto, la imagen pasa por tres motores OpenCV encadenados. Cada uno tiene una responsabilidad específica y opera sobre el resultado del anterior.</p>
+
+  <div class="pipeline-steps">
+    <div class="pipeline-step">
+      <div class="step-num"></div>
+      <div class="step-body">
+        <p class="step-name">Análisis Vini <span class="badge green">detección</span></p>
+        <p class="step-desc">Vini analiza las 5 métricas clave (brillo, ruido, contraste, bordes, saturación) y determina el modo óptimo. A partir de este punto, todos los parámetros están calibrados para este tipo específico de imagen.</p>
+      </div>
+    </div>
+
+    <div class="pipeline-step">
+      <div class="step-num"></div>
+      <div class="step-body">
+        <p class="step-name">Motor 1 — Denoise <span class="badge blue">ruido</span></p>
+        <p class="step-desc">Reducción de ruido selectiva usando <code>fastNlMeansDenoisingColored</code>. La fuerza (parámetro h) se escala entre 4 y 12 según el noise_score de Vini. No aplica si el ruido es menor a 5%, preservando detalles finos en imágenes limpias.</p>
+      </div>
+    </div>
+
+    <div class="pipeline-step">
+      <div class="step-num"></div>
+      <div class="step-body">
+        <p class="step-name">Motor 2 — Rango dinámico <span class="badge amber">tono</span></p>
+        <p class="step-desc">Cuatro sub-pasos: (a) corrección de viñeta gaussiana para compensar la caída de luz en bordes de lente móvil, (b) deskew suave para corregir inclinaciones menores a 15°, (c) tone mapping zonal independiente para sombras/medios/luces en canal L del espacio LAB, (d) CLAHE adaptativo con clip distinto para centro y bordes de la imagen.</p>
+      </div>
+    </div>
+
+    <div class="pipeline-step">
+      <div class="step-num"></div>
+      <div class="step-body">
+        <p class="step-name">Motor 3 — Nitidez por modo <span class="badge red">modo</span></p>
+        <p class="step-desc">El pipeline de nitidez varía según el contexto detectado. <strong>book:</strong> Unsharp Mask refinado sobre canal L + White Balance Grey World. <strong>photo:</strong> sharpening edge-aware en espacio LAB + boost de saturación + corrección gamma. <strong>document:</strong> sharpening agresivo con máscara de bordes Sobel + binarización adaptativa para máximo contraste texto/fondo.</p>
+      </div>
+    </div>
+
+    <div class="pipeline-step">
+      <div class="step-num"></div>
+      <div class="step-body">
+        <p class="step-name">Codificación y entrega <span class="badge green">salida</span></p>
+        <p class="step-desc">La imagen mejorada se codifica a JPEG con calidad optimizada (85–95 según modo), se genera un thumbnail 200×200, se calcula el hash SHA-256 para la URL firmada con HMAC, y se almacena en caché LRU. La respuesta JSON incluye la imagen en base64, el thumbnail, las métricas de mejora antes/después, y la URL firmada de acceso directo.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════ INFRA -->
+<section class="page" id="infra">
+  <p class="page-num">05 — Infraestructura</p>
+  <h2 class="page-title">Deploy con<br><em>Docker</em></h2>
+  <p class="lead">Todo el sistema corre en contenedores Docker orquestados con Compose. Un solo comando levanta todos los servicios con sus dependencias correctas.</p>
+
+  <table class="infra-table">
+    <thead>
+      <tr>
+        <th>Servicio</th>
+        <th>Imagen</th>
+        <th>Puerto</th>
+        <th>Función</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>web</td>
+        <td>Dockerfile propio</td>
+        <td>8000</td>
+        <td>Servidor FastAPI. Recibe las imágenes, ejecuta el pipeline OpenCV y devuelve los resultados. Uvicorn como servidor ASGI.</td>
+      </tr>
+      <tr>
+        <td>worker</td>
+        <td>Dockerfile propio</td>
+        <td>—</td>
+        <td>Worker Celery para tareas asíncronas pesadas. Comparte el volumen de imágenes con el servidor principal.</td>
+      </tr>
+      <tr>
+        <td>db</td>
+        <td>postgres:15-alpine</td>
+        <td>5432</td>
+        <td>Base de datos PostgreSQL para historial de procesamientos y metadatos de imágenes.</td>
+      </tr>
+      <tr>
+        <td>redis</td>
+        <td>redis:alpine</td>
+        <td>6379</td>
+        <td>Broker de mensajes para Celery y caché de sesiones. También sirve como cola de tareas.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <pre><span class="comment"># Levantar todo el sistema:</span>
+docker-compose up
+
+<span class="comment"># Solo el servidor en desarrollo:</span>
+uvicorn main:app --host 0.0.0.0 --port 8000 --reload
+
+<span class="comment"># Verificar que funciona:</span>
+curl http://localhost:8000/health
+<span class="comment"># → { "status": "healthy", "version": "2.1.0", ... }</span></pre>
+
+  <p style="font-size:14px; color:var(--ink3); line-height:1.75; margin-top:1.5rem;">Los servicios <code>web</code> y <code>worker</code> comparten un volumen Docker (<code>shared_data</code>) para que ambos accedan a las mismas imágenes procesadas. El health check de PostgreSQL usa <code>pg_isready</code> para garantizar que el servidor no arranque antes de que la base esté disponible.</p>
+</section>
+
+<!-- ═══════════════════════════════════ APRENDIZAJES -->
+<section class="page" id="aprendizajes">
+  <p class="page-num">06 — Reflexión técnica</p>
+  <h2 class="page-title">Qué aprendí<br><em>construyendo esto</em></h2>
+  <p class="lead">Cada componente del proyecto presentó un desafío técnico específico. Estos son los más importantes, con la solución que encontré.</p>
+
+  <div class="learn-list">
+    <div class="learn-item">
+      <div class="learn-marker">⚡</div>
+      <div class="learn-text">
+        <strong>Concurrencia en un servidor de imágenes</strong>
+        <span>OpenCV es completamente síncrono. Si el pipeline de una imagen tarda 2 segundos, bloquea todo el event loop de FastAPI para las demás solicitudes. La solución fue usar <code>asyncio.to_thread()</code> para ejecutar el pipeline en un thread pool, más un Semaphore de 4 para no saturar la CPU con demasiados procesos paralelos.</span>
+      </div>
+    </div>
+    <div class="learn-item">
+      <div class="learn-marker">📱</div>
+      <div class="learn-text">
+        <strong>Procesamiento en tiempo real en Flutter</strong>
+        <span>Medir la nitidez de cada frame de cámara en el hilo principal causaba drops de FPS. La solución fue un Isolate persistente que recibe el plano Y del YUV420 con TransferableTypedData (zero-copy), calcula la varianza del Laplaciano, y devuelve solo un número. El hilo principal nunca se bloquea.</span>
+      </div>
+    </div>
+    <div class="learn-item">
+      <div class="learn-marker">🔬</div>
+      <div class="learn-text">
+        <strong>Diseño de detectores modulares</strong>
+        <span>En lugar de un único clasificador monolítico, separé la lógica en detectores independientes (blur, brillo, ruido, caras) que cada uno devuelve un dict estructurado. El ContextClassifier los fusiona después. Esto permite testear cada detector por separado y mejorar uno sin afectar los demás.</span>
+      </div>
+    </div>
+    <div class="learn-item">
+      <div class="learn-marker">🔐</div>
+      <div class="learn-text">
+        <strong>Seguridad en URLs de imágenes</strong>
+        <span>Las imágenes procesadas son privadas. Para servir acceso temporal usé URLs firmadas con HMAC-SHA256: el servidor genera un token que incluye el hash de la imagen y un timestamp de expiración. Si alguien modifica la URL, la firma no coincide y el acceso es denegado.</span>
+      </div>
+    </div>
+    <div class="learn-item">
+      <div class="learn-marker">🎨</div>
+      <div class="learn-text">
+        <strong>Por qué el espacio de color LAB para nitidez</strong>
+        <span>Aplicar sharpening en BGR crea artefactos de color en los bordes (halos de color). Al trabajar en el espacio LAB y aplicar los cambios solo sobre el canal L (luminancia), la saturación y el tono original se preservan. El ojo humano percibe la nitidez principalmente en luminancia, no en color.</span>
+      </div>
+    </div>
+    <div class="learn-item">
+      <div class="learn-marker">📦</div>
+      <div class="learn-text">
+        <strong>Escritura atómica para evitar archivos corruptos</strong>
+        <span>Si el servidor recibe un kill signal mientras escribe una imagen, el archivo queda truncado y corrupto. La solución es escribir primero en un archivo temporal (<code>NamedTemporaryFile</code>) y luego moverlo con <code>shutil.move()</code>. El movimiento es atómico en el mismo filesystem, así el archivo aparece completo o no aparece.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════ CONCLUSIÓN -->
+<section class="page" id="conclusion">
+  <p class="page-num">07 — Cierre</p>
+  <h2 class="page-title">Conclusión<br><em>del proyecto</em></h2>
+
+  <div class="conclusion-box">
+    <h3>Un sistema real, no un prototipo</h3>
+    <p>CELI AI no es un experimento académico aislado. Es un sistema de producción con autenticación, manejo de errores, límites de concurrencia, caché, logging, health checks y deploy en Docker. Cada decisión técnica tuvo una razón: el semáforo para no saturar la CPU, el Isolate para no bloquear la UI, el espacio LAB para no arruinar los colores, la escritura atómica para no corromper archivos.</p>
+    <p>El módulo Vini fue el aprendizaje más importante: construir un sistema de análisis que funciona en capas — detectores independientes que se combinan en un clasificador — es una forma de pensar que se aplica a cualquier problema de IA, no solo a imágenes.</p>
+    <p>El siguiente paso es agregar un modelo de deep learning ligero (MobileNetV3) para reemplazar las reglas manuales del ContextClassifier y mejorar la detección de contextos complejos como low_light o product_photo.</p>
+  </div>
+
+  <hr class="rule">
+
+  <p style="font-size:13px; color:var(--ink3); line-height:1.75;">Todos los archivos del proyecto están documentados y el sistema corre con un único <code>docker-compose up</code>. El servidor expone documentación automática de la API en <code>/docs</code> (Swagger UI generado por FastAPI).</p>
+</section>
+
+<footer>
+  <span>CELI AI — Portafolio Académico 2024</span>
+  <span>Python · FastAPI · OpenCV · Flutter · Docker</span>
+  <span>Sistema de mejora de imágenes con visión artificial</span>
+</footer>
+
+</body>
+</html>
